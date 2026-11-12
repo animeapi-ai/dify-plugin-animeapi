@@ -1,0 +1,110 @@
+identity:
+  name: generate_image
+  author: animeapi
+  label:
+    en_US: Generate Anime Image
+    zh_Hans: 生成动漫图片
+    ja_JP: アニメ画像を生成
+description:
+  human:
+    en_US: Generate an anime image from a text description. $0.003 per image on the anime model.
+    zh_Hans: 根据文字描述生成动漫图片。anime 模型每张 $0.003。
+    ja_JP: テキストからアニメ画像を生成します。anime モデルは 1 枚 $0.003。
+  llm: >-
+    Generate one anime-style image from a text description with AnimeAPI and return it as an image file.
+    Costs $0.003 per image on the default anime model ($0.01 on ultra, $0.02 on ultra-max).
+    Describe the subject, appearance, pose, setting and lighting in plain English.
+    Adult content is not available; explicit prompts are refused.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+      ja_JP: プロンプト
+    human_description:
+      en_US: What to draw, in plain words. Up to 1000 characters.
+      zh_Hans: 用自然语言描述要画的内容，最多 1000 个字符。
+      ja_JP: 描きたい内容を自然な文章で。1000 文字まで。
+    llm_description: >-
+      What to draw: subject, appearance, pose, setting, lighting. Plain English works best.
+      At most 1000 characters.
+  - name: orientation
+    type: select
+    required: false
+    form: llm
+    default: portrait
+    label:
+      en_US: Orientation
+      zh_Hans: 画面方向
+      ja_JP: 向き
+    human_description:
+      en_US: Shape of the image. Same price for every shape.
+      zh_Hans: 图片形状。任何形状价格相同。
+      ja_JP: 画像の形。どの形でも同じ価格です。
+    llm_description: >-
+      Shape of the image: portrait (default; characters, full body), square (avatars, icons)
+      or landscape (scenery, wide scenes).
+    options:
+      - value: portrait
+        label:
+          en_US: Portrait
+          zh_Hans: 竖图
+          ja_JP: 縦長
+      - value: square
+        label:
+          en_US: Square
+          zh_Hans: 方图
+          ja_JP: 正方形
+      - value: landscape
+        label:
+          en_US: Landscape
+          zh_Hans: 横图
+          ja_JP: 横長
+  - name: model
+    type: select
+    required: false
+    form: form
+    default: anime
+    label:
+      en_US: Model
+      zh_Hans: 模型
+      ja_JP: モデル
+    human_description:
+      en_US: anime is $0.003 per image, ultra $0.01, ultra-max $0.02.
+      zh_Hans: anime 每张 $0.003，ultra $0.01，ultra-max $0.02。
+      ja_JP: anime は 1 枚 $0.003、ultra は $0.01、ultra-max は $0.02。
+    options:
+      - value: anime
+        label:
+          en_US: anime ($0.003 per image)
+          zh_Hans: anime（每张 $0.003）
+          ja_JP: anime（1 枚 $0.003）
+      - value: ultra
+        label:
+          en_US: ultra ($0.01 per image)
+          zh_Hans: ultra（每张 $0.01）
+          ja_JP: ultra（1 枚 $0.01）
+      - value: ultra-max
+        label:
+          en_US: ultra-max ($0.02 per image)
+          zh_Hans: ultra-max（每张 $0.02）
+          ja_JP: ultra-max（1 枚 $0.02）
+  - name: enhance
+    type: boolean
+    required: false
+    form: form
+    default: true
+    label:
+      en_US: Enhance prompt
+      zh_Hans: 优化提示词
+      ja_JP: プロンプトを補強
+    human_description:
+      en_US: Rewrite plain words into tags for the anime model. Turn off to send your own tags unchanged.
+      zh_Hans: 把自然语言改写成 anime 模型使用的标签。关闭后原样发送你的标签。
+      ja_JP: 文章を anime モデル向けのタグに書き換えます。オフにすると入力したタグをそのまま送ります。
+extra:
+  python:
+    source: tools/generate_image.py

@@ -1,0 +1,36 @@
+identity:
+  author: animeapi
+  name: animeapi
+  label:
+    en_US: AnimeAPI
+    zh_Hans: AnimeAPI
+    ja_JP: AnimeAPI
+  description:
+    en_US: Anime image generation at $0.003 per image. Prepaid from $5, no subscription; 3 free images for new accounts.
+    zh_Hans: 动漫图片生成，每张 $0.003。预付 $5 起，无订阅；新账号免费 3 张。
+    ja_JP: アニメ画像生成、1 枚 $0.003。プリペイド $5 から、サブスクなし。新規アカウントは無料 3 枚。
+  icon: icon.svg
+  tags:
+    - image
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: AnimeAPI key
+      zh_Hans: AnimeAPI 密钥
+      ja_JP: AnimeAPI キー
+    placeholder:
+      en_US: ank_...
+      zh_Hans: ank_...
+      ja_JP: ank_...
+    help:
+      en_US: Create a key at animeapi.ai. New accounts get 3 free images, no card.
+      zh_Hans: 在 animeapi.ai 创建密钥。新账号免费 3 张图片，无需绑卡。
+      ja_JP: animeapi.ai でキーを作成します。新規アカウントは無料 3 枚、カード不要。
+    url: https://animeapi.ai/dashboard/api-keys
+tools:
+  - tools/generate_image.yaml
+extra:
+  python:
+    source: provider/animeapi.py

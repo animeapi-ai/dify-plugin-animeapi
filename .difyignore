@@ -1,0 +1,13 @@
+.git/
+.github/
+.gitignore
+.env
+.env.*
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+*.difypkg
+docs/
+CHANGELOG.md
